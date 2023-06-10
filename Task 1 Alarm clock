@@ -1,0 +1,36 @@
+import datetime
+import tkinter as tk
+from tkinter import messagebox
+
+def set_alarm():
+    hour = int(entry_hour.get())
+    minute = int(entry_minute.get())
+    alarm_time = datetime.time(hour, minute)
+
+    while True:
+        current_time = datetime.datetime.now().time()
+        if current_time >= alarm_time:
+            messagebox.showinfo("Alarm", "Wake up!")
+            break
+
+# Create the GUI window
+window = tk.Tk()
+window.title("Alarm Clock")
+
+# Create labels and entry fields for hour and minute
+label_hour = tk.Label(window, text="Hour (0-23):")
+label_hour.pack()
+entry_hour = tk.Entry(window)
+entry_hour.pack()
+
+label_minute = tk.Label(window, text="Minute (0-59):")
+label_minute.pack()
+entry_minute = tk.Entry(window)
+entry_minute.pack()
+
+# Create the set alarm button
+button_set_alarm = tk.Button(window, text="Set Alarm", command=set_alarm)
+button_set_alarm.pack()
+
+# Run the GUI window
+window.mainloop()
